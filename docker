@@ -1,0 +1,15 @@
+# Use a suitable base image (e.g., CentOS)
+FROM centos:latest
+
+# Install httpd (web server)
+RUN yum -y update
+RUN yum -y install httpd
+
+# Copy index.html from /home to /var/www/html
+COPY index.html /var/www/html/index.html
+
+# Expose port 80 for HTTP
+EXPOSE 80
+
+# Start the web server
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
